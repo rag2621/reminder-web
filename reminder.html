@@ -1,0 +1,160 @@
+<html>
+    <head>
+        <title>
+            Reminder
+        </title>
+    </head>
+
+    <body>
+        <div ><input type="text" placeholder="Add" class="ls" style="display: inline-block;">
+            <input type="date" class="d">;
+            <button onclick=" add()" style="background-color: rgb(80, 236, 80); border: 0; border-radius: 10px; height: 30px; width: 60px;">ADD</button>
+            
+           
+        </div>
+            
+          
+        
+        <div style="display: flex; flex-direction: row; gap: 20px; align-items: baseline; vertical-align: middle;  " >
+            <div class="us"></div>
+            <div class="sc" style="display: block;"></div>
+            <div class="del" style="display: block; "></div>
+            <button onclick="localStorage.removeItem('item')">reset</button>
+
+        </div>
+       
+
+        <script>
+          
+          todohtml=``;
+            datehtml=``;
+            deletehtml=``;
+        
+      
+            
+                let todo=JSON.parse(localStorage.getItem('item'));
+                 if(todo===null){
+             todo=[];}
+             console.log(todo);
+             console.log(localStorage.getItem('item'));
+            
+
+        
+        for(let i=0;i<todo.length;i++){
+                const html=`<p>${todo[i].Work}</p>`;
+                todohtml=todohtml + html;
+            }
+            for(let j=0;j<todo.length;j++){
+                const html1=`<p>${todo[j].daate}</p> `;
+                datehtml=datehtml + html1;    
+            }  
+            for(let k=0;k<todo.length;k++){
+                const html2=`<button style="display:block; margin-bottom:0px; margin-top:14px; background-color:rgb(232, 59, 59); border:0; border-radius: 10px; height: 20px; width: 60px;" onclick="todo.splice(${k},1); sett();">Delete</button>`;
+                 deletehtml=deletehtml + html2;
+
+            }
+            document.querySelector('.us').innerHTML= todohtml;
+            document.querySelector('.sc').innerHTML=datehtml;  
+            document.querySelector('.del').innerHTML= deletehtml;
+         
+             
+           
+          function add(){
+            
+            
+            
+            const aa=document.querySelector('.ls');
+            const da=document.querySelector('.d');
+            const deel=document.querySelector('.del');
+           
+            let va=aa.value;
+            let dd=da.value;
+            todohtml=``;
+            datehtml=``;
+            deletehtml=``;
+           
+
+            todo.push({Work:va,
+                       daate:dd},);
+                       
+            for(let i=0;i<todo.length;i++){
+                const html=`<p>${todo[i].Work}</p>`;
+                todohtml=todohtml + html;
+            }
+            for(let j=0;j<todo.length;j++){
+                const html1=`<p>${todo[j].daate}</p> `;
+                datehtml=datehtml + html1;    
+            }  
+            for(let k=0;k<todo.length;k++){
+                const html2=`<button style="display:block; margin-bottom:0px; margin-top:14px; background-color:rgb(232, 59, 59); border:0; border-radius: 10px; height: 20px; width: 60px;" onclick="todo.splice(${k},1); sett();">Delete</button>`;
+                 deletehtml=deletehtml + html2;
+
+            }
+            
+                document.querySelector('.us').innerHTML= todohtml;
+            document.querySelector('.sc').innerHTML=datehtml;  
+            document.querySelector('.del').innerHTML=  deletehtml;
+           
+            
+            console.log(todohtml);
+            localStorage.setItem('item',JSON.stringify(todo));
+            console.log(JSON.parse(localStorage.getItem('item')));
+            document.querySelector('.ls').value=null;
+            document.querySelector('.d').value=null;
+            
+          
+            
+        
+           
+            
+
+            
+            
+            
+          }
+          
+          function sett(){
+            todohtml=``;
+            datehtml=``; 
+            deletehtml=``;
+
+                for(let i=0;i<todo.length;i++){
+                const html=`<p>${todo[i].Work}</p>`;
+                todohtml=todohtml + html;
+            }
+            for(let j=0;j<todo.length;j++){
+                const html1=`<p>${todo[j].daate}</p> `;
+                datehtml=datehtml + html1;    
+            }  
+            for(let k=0;k<todo.length;k++){
+                const html2=`<button style="display:block; margin-bottom:0px; margin-top:14px; background-color:rgb(232, 59, 59); border:0; border-radius: 10px; height: 20px; width: 60px;" onclick=" todo.splice(${k},1); sett();">Delete</button>`;
+                 deletehtml=deletehtml + html2;
+
+            }
+            document.querySelector('.us').innerHTML=todohtml;  
+            document.querySelector('.sc').innerHTML=datehtml;
+            document.querySelector('.del').innerHTML=deletehtml; 
+            localStorage.setItem('item',JSON.stringify(todo));
+            console.log(JSON.parse(localStorage.getItem('item')));
+            
+
+
+            }  
+            
+          
+            
+
+
+
+         
+         
+
+            
+            
+
+            
+        </script>
+    </body>
+
+
+</html>
